@@ -99,7 +99,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
             if terminated or truncated:
                 obs, info = env.reset(seed = 42)
                 obs_rgb, _ = env_rgb.reset(seed = 42)
-                print("rgb shape",obs_rgb.shape)
+                #print("rgb shape",obs_rgb.shape)
             # Verificar si se ha perdido una vida
             current_lives = info.get("life", 2)  # Supongamos que 3 es el número inicial de vidas, si no está disponible, se asume 2
             life_lost = False
