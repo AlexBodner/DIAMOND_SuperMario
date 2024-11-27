@@ -59,7 +59,7 @@ def save_to_hdf5(filename, frames_data):
 
 
 
-def main(n_episodes = 5, epsilon = 0.15):
+def main(n_episodes = 5, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
     # Inicialización
     world = 1
     stage = 1
@@ -90,7 +90,7 @@ def main(n_episodes = 5, epsilon = 0.15):
         previous_lives = None  # Variable para trackear las vidas anteriores
         prev_action = one_hot_encode(3,len(actions) ) #NOOP
         reward = 0
-
+        epsilon = random.choice(epsilons)
         for step in range(1000):  # 1000 frames (~1 minuto)
             if terminated or truncated:
                 obs, info = env.reset(seed = 42)
