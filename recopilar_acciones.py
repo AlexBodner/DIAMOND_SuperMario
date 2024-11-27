@@ -36,8 +36,8 @@ def create_env(world, stage):
     env = CustomReward(GymnasiumEnvWrapper(env), None)
     env = CustomSkipFrame(env)
     env = GymnasiumEnvWrapper(env)
-
     return env
+    
 def create_env_rgb(world, stage):
     env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode=None, apply_api_compatibility=True,
                                      max_episode_steps=1000)
@@ -58,13 +58,7 @@ def save_to_hdf5(filename, frames_data):
             f.create_dataset(f'frame_{i}_helperarr', data=frames_data['helperarr'][i])
 
 
-# Variables para almacenar datos
-frames_data = {
-    'frames': [],  # Para almacenar las imágenes
-    'actions': [],  # Para almacenar las acciones anteriores
-    'target_actions': [],  # Para almacenar las acciones de destino
-    'helperarr': []  # Para almacenar las banderas de vida perdida
-}
+
 def main(n_episodes = 5, epsilon = 0.15):
     # Inicialización
     world = 1
@@ -84,6 +78,13 @@ def main(n_episodes = 5, epsilon = 0.15):
         model.eval()
 
     for episode in range(n_episodes):
+        # Variables para almacenar datos
+        frames_data = {
+            'frames': [],  # Para almacenar las imágenes
+            'actions': [],  # Para almacenar las acciones anteriores
+            'target_actions': [],  # Para almacenar las acciones de destino
+            'helperarr': []  # Para almacenar las banderas de vida perdida
+        }
         # Empezar a jugar el juego y recolectar datos
         terminated, truncated = True, True
         previous_lives = None  # Variable para trackear las vidas anteriores
