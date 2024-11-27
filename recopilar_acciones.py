@@ -1,9 +1,6 @@
-<<<<<<< HEAD
 
-=======
 import os
 import gym
->>>>>>> 5ba896a4d1575796206b696263254af608a0de98
 import torch
 import numpy as np
 import torch.nn.functional as F
@@ -12,17 +9,14 @@ from nes_py.wrappers import JoypadSpace
 import gym_super_mario_bros
 from gym_super_mario_bros.actions import SIMPLE_MOVEMENT
 from src.model import PPO
-<<<<<<< HEAD
 from wrappers import *# CustomReward,CustomReward_rgb, CustomSkipFrame, GymnasiumEnvWrapper,process_frame
 import pandas as pd
 import numpy as np
 import random
-=======
 from wrappers import CustomReward, CustomSkipFrame, GymnasiumEnvWrapper
 import pandas as pd
 import numpy as np
 
->>>>>>> 5ba896a4d1575796206b696263254af608a0de98
 # Function to convert an action index to a one-hot encoded vector
 def one_hot_encode(action_index, num_actions):
     # Efficiently create a one-hot encoded vector using np.eye (identity matrix)
@@ -43,18 +37,16 @@ JoypadSpace.reset = lambda self, **kwargs: self.env.reset(**kwargs)
 
 # Crear entorno
 def create_env(world, stage):
-<<<<<<< HEAD
     env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode=None, apply_api_compatibility=True,
-=======
-    env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode='human', apply_api_compatibility=True,
->>>>>>> 5ba896a4d1575796206b696263254af608a0de98
+
+    env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode=None, apply_api_compatibility=True,
                                      max_episode_steps=1000)
     env = JoypadSpace(env, SIMPLE_MOVEMENT)
     env = CustomReward(GymnasiumEnvWrapper(env), None)
     env = CustomSkipFrame(env)
     env = GymnasiumEnvWrapper(env)
-
     return env
+    
 def create_env_rgb(world, stage):
     env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode=None, apply_api_compatibility=True,
                                      max_episode_steps=1000)
@@ -75,14 +67,8 @@ def save_to_hdf5(filename, frames_data):
             f.create_dataset(f'frame_{i}_helperarr', data=frames_data['helperarr'][i])
 
 
-# Variables para almacenar datos
-frames_data = {
-    'frames': [],  # Para almacenar las imágenes
-    'actions': [],  # Para almacenar las acciones anteriores
-    'target_actions': [],  # Para almacenar las acciones de destino
-    'helperarr': []  # Para almacenar las banderas de vida perdida
-}
-def main(n_episodes = 50, epsilon = 0.15):
+
+def main(n_episodes = 5, epsilon = 0.15):
     # Inicialización
     world = 1
     stage = 1
@@ -101,6 +87,13 @@ def main(n_episodes = 50, epsilon = 0.15):
         model.eval()
 
     for episode in range(n_episodes):
+        # Variables para almacenar datos
+        frames_data = {
+            'frames': [],  # Para almacenar las imágenes
+            'actions': [],  # Para almacenar las acciones anteriores
+            'target_actions': [],  # Para almacenar las acciones de destino
+            'helperarr': []  # Para almacenar las banderas de vida perdida
+        }
         # Empezar a jugar el juego y recolectar datos
         terminated, truncated = True, True
         previous_lives = None  # Variable para trackear las vidas anteriores
