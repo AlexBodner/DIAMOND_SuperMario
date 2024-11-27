@@ -2,3 +2,4 @@ gym_super_mario_bros
 torch
 torchvision
 opencv-python
+pandas

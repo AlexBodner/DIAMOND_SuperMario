@@ -59,13 +59,12 @@ def save_to_hdf5(filename, frames_data):
 
 
 
-def main(n_episodes = 5, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
+def main(n_episodes = 1, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
     # Inicialización
     world = 1
     stage = 1
     saved_path = "ppo_models"
-    env = create_env(world, stage)
-    env_rgb =  create_env_rgb(world, stage)
+
     actions = SIMPLE_MOVEMENT
     model = PPO(env.observation_space.shape[0], len(actions))
 
@@ -78,6 +77,8 @@ def main(n_episodes = 5, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
         model.eval()
 
     for episode in range(n_episodes):
+        env = create_env(world, stage)
+        env_rgb =  create_env_rgb(world, stage)
         # Variables para almacenar datos
         frames_data = {
             'frames': [],  # Para almacenar las imágenes
