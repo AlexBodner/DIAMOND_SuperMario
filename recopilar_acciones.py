@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-=======
-import os
-import gym
->>>>>>> 5ba896a4d1575796206b696263254af608a0de98
 import torch
 import numpy as np
 import torch.nn.functional as F
@@ -12,17 +6,10 @@ from nes_py.wrappers import JoypadSpace
 import gym_super_mario_bros
 from gym_super_mario_bros.actions import SIMPLE_MOVEMENT
 from src.model import PPO
-<<<<<<< HEAD
 from wrappers import *# CustomReward,CustomReward_rgb, CustomSkipFrame, GymnasiumEnvWrapper,process_frame
 import pandas as pd
 import numpy as np
 import random
-=======
-from wrappers import CustomReward, CustomSkipFrame, GymnasiumEnvWrapper
-import pandas as pd
-import numpy as np
-
->>>>>>> 5ba896a4d1575796206b696263254af608a0de98
 # Function to convert an action index to a one-hot encoded vector
 def one_hot_encode(action_index, num_actions):
     # Efficiently create a one-hot encoded vector using np.eye (identity matrix)
@@ -43,11 +30,7 @@ JoypadSpace.reset = lambda self, **kwargs: self.env.reset(**kwargs)
 
 # Crear entorno
 def create_env(world, stage):
-<<<<<<< HEAD
     env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode=None, apply_api_compatibility=True,
-=======
-    env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode='human', apply_api_compatibility=True,
->>>>>>> 5ba896a4d1575796206b696263254af608a0de98
                                      max_episode_steps=1000)
     env = JoypadSpace(env, SIMPLE_MOVEMENT)
     env = CustomReward(GymnasiumEnvWrapper(env), None)
@@ -82,7 +65,7 @@ frames_data = {
     'target_actions': [],  # Para almacenar las acciones de destino
     'helperarr': []  # Para almacenar las banderas de vida perdida
 }
-def main(n_episodes = 50, epsilon = 0.15):
+def main(n_episodes = 5, epsilon = 0.15):
     # Inicialización
     world = 1
     stage = 1
