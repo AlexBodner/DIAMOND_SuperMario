@@ -129,7 +129,7 @@ def main(n_episodes = 5, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
                 break
 
         # Guardar los datos recolectados en un archivo .hdf5
-        save_to_hdf5(f"AI-MarioKart64/diamond/dataset_files/mario_episode_data_{episode}.hdf5", frames_data)
+        save_to_hdf5(f"diamond/dataset_files/mario_episode_data_{episode}.hdf5", frames_data)
 
         env.close()
         env_rgb.close()
