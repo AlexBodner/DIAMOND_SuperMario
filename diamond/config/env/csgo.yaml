@@ -2,6 +2,6 @@ train:
   id: csgo
   size: [256,240]
 num_actions: 7
-path_data_low_res: /mnt/c/Users/alex_/Documents/Udesa/3ero/Vision/TP Final Vision/AI-MarioKart64/diamond/processed/low_res
-path_data_full_res: /mnt/c/Users/alex_/Documents/Udesa/3ero/Vision/TP Final Vision/AI-MarioKart64/diamond/processed/full_res
+path_data_low_res: /home/abodner/DIAMOND_SuperMario_cloud/diamond/processed/low_res
+path_data_full_res: /home/abodner/DIAMOND_SuperMario_cloud/diamond/processed/full_res
 keymap: csgo
