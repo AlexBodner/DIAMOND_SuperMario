@@ -62,7 +62,7 @@ class Game:
 
 		def draw_obs(obs, obs_low_res=None):
 			assert obs.ndim == 4 and obs.size(0) == 1
-			img = Image.fromarray(obs[0].add(1).div(2).mul(255).byte().permute(1, 2, 0).cpu().numpy())
+			img = Image.fromarray(obs[0].add(1).div(2).mul(255).byte().permute(1, 2, 0).cpu().numpy()[:, :, ::-1]) #CON ESTO LO HAGO RGB
 			pygame_image = np.array(img.resize((self.width, self.height), resample=Image.BICUBIC)).transpose((1, 0, 2))
 			surface = pygame.surfarray.make_surface(pygame_image)
 			screen.blit(surface, (x_center - self.width // 2, y_center - self.height // 2))

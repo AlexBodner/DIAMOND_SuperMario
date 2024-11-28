@@ -71,7 +71,7 @@ def encode_csgo_action(csgo_action: CSGOAction, device: torch.device) -> torch.T
 		#	input_vector[0] = 1
 		#could iterate over more keys here
 	
-	steering_vector[2] = 1#[decimal_to_index(csgo_action.steering_value)] = 1
+	steering_vector[5] = 1#[decimal_to_index(csgo_action.steering_value)] = 1
 
 	return torch.tensor(
 		steering_vector,
@@ -84,8 +84,8 @@ def decode_csgo_action(y_preds: torch.Tensor) -> CSGOAction:
 	y_preds = y_preds.squeeze()
 	steering_vector = y_preds[0:22]
 	boosting = y_preds[-1]
-
-	onehot_index = steering_vector.index(1)
+	print(steering_vector)
+	onehot_index = steering_vector.argmax()
 	steering_value = index_to_decimal(onehot_index)
 
 	keys_pressed = []
