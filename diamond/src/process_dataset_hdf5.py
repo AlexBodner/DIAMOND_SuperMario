@@ -96,7 +96,7 @@ def main():
 		
 		if not original_size:
 			original_size = episode.obs.size()
-		print("shape",episode.obs.shape)
+		#print("shape",episode.obs.shape)
 		episode.obs = T.resize(
 			episode.obs, (low_res_h, low_res_w), interpolation=T.InterpolationMode.BICUBIC
 		)

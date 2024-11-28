@@ -27,7 +27,7 @@ class CSGOAction:
 def print_csgo_action(action: CSGOAction) -> Tuple[str]:
 	action_names = [CSGO_KEYMAP[k] for k in action.keys] if len(action.keys) > 0 else []
 	keys = " + ".join(action_names)
-	return f"{keys} [Steering {action.steering_value}] | MAP: {action.map_id}"
+	return f"{keys} [Steering {action.steering_value}] "
 	
 
 def decimal_to_index(decimal_value):
@@ -63,21 +63,18 @@ def index_to_decimal(index):
 
 def encode_csgo_action(csgo_action: CSGOAction, device: torch.device) -> torch.Tensor:
 
-	input_vector = np.zeros(1)
-	steering_vector = np.zeros(21)
+	#input_vector = np.zeros(1)
+	steering_vector = np.zeros(7)
 	
-	for key in csgo_action.key_names:
-		if key == "d":
-			input_vector[0] = 1
+	#for key in csgo_action.key_names:
+		#if key == "d":
+		#	input_vector[0] = 1
 		#could iterate over more keys here
 	
-	steering_vector[decimal_to_index(csgo_action.steering_value)] = 1
+	steering_vector[2] = 1#[decimal_to_index(csgo_action.steering_value)] = 1
 
 	return torch.tensor(
-		np.concatenate((
-			steering_vector,
-			input_vector
-		)),
+		steering_vector,
 		device=device,
 		dtype=torch.float32,
 	)

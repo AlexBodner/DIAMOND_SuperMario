@@ -8,8 +8,8 @@ import torchvision.transforms.functional as T
 from PIL import Image
 import cv2
 
-low_res_w = 64
-low_res_h = 48
+low_res_w = 256//4 #64
+low_res_h = 240//4 
 
 def parse_args():
 	parser = argparse.ArgumentParser()

@@ -68,8 +68,8 @@ denoiser:
   training:
     num_autoregressive_steps: 4
     start_after_epochs: 0
-    steps_first_epoch: 100
-    steps_per_epoch: 200
+    steps_first_epoch: 500
+    steps_per_epoch: 500
     sample_weights: null
     batch_size: 14
     grad_acc_steps: 1

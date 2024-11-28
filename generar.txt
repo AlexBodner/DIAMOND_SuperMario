@@ -1,0 +1,6 @@
+-- Descargar modelo y ponerlo en carpeta diamond
+
+-- Generar spawn points
+   - Correr recopilar_acciones.py con 2 episodios
+   - python3 src/spawn.py dataset_files/ ./
+-- Falta cambiar: diamond\src\csgo\keymap.py
