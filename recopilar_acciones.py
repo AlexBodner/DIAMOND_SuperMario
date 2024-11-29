@@ -87,6 +87,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
         frames_data = {
             'frames': [],  # Para almacenar las imágenes
             'actions': [],  # Para almacenar las acciones anteriores
+            'target_actions': [],  # Para almacenar las acciones de destino
             'helperarr': []  # Para almacenar las banderas de vida perdida
         }
         # Empezar a jugar el juego y recolectar datos
@@ -108,21 +109,23 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
             frames_data['helperarr'].append([reward,int(life_lost)])  # 1 si se perdió una vida, 0 si no
             # Predecir la acción
             if random.random()<epsilon:
-                action = env.action_space.sample()
+                action =env.action_space.sample()
             else:
                 action = model.predict_action(obs)
+
             # Almacenar los datos de cada frame
             frames_data['frames'].append(obs_rgb)  # Imagen
-
-            #frames_data['actions'].append(prev_action)  # Acción anterior
+            frames_data['actions'].append(prev_action)  # Acción anterior
             #print(one_hot_encode(action,len(actions) ))
             obs_rgb, reward_r, terminated, truncated, info = env_rgb.step(action)
+
             obs, reward, terminated, truncated, info = env.step(action)
-            action = one_hot_encode(action,len(actions) )
-            frames_data['actions'].append(action)  # Acción actual
             if reward!=reward_r:
                 print("differnce in rewards between played and saved")
+            action = one_hot_encode(action,len(actions) )
+            frames_data['target_actions'].append(action)  # Aquí irían las acciones de destino (debe adaptarse según el formato requerido)
 
+            prev_action =action
             # Mostrar el estado del juego
             #env.render()
             if info["flag_get"]:
