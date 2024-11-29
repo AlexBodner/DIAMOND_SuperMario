@@ -87,7 +87,6 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
         frames_data = {
             'frames': [],  # Para almacenar las imágenes
             'actions': [],  # Para almacenar las acciones anteriores
-            'target_actions': [],  # Para almacenar las acciones de destino
             'helperarr': []  # Para almacenar las banderas de vida perdida
         }
         # Empezar a jugar el juego y recolectar datos
