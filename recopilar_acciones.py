@@ -112,7 +112,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
             else:
                 action = model.predict_action(obs)
             # Almacenar los datos de cada frame
-            frames_data['frames'].append(obs_rgb)  # Imagen
+            frames_data['frames'].append(obs_rgb.copy())  # Imagen
 
             #frames_data['actions'].append(prev_action)  # Acción anterior
             #print(one_hot_encode(action,len(actions) ))
@@ -137,3 +137,4 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
 
 if __name__ =="__main__":
     main()
+    print("Finished creating dataset")
