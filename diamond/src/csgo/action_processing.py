@@ -71,7 +71,7 @@ def encode_csgo_action(csgo_action: CSGOAction, device: torch.device) -> torch.T
 		#	input_vector[0] = 1
 		#could iterate over more keys here
 	
-	steering_vector[5] = 1#[decimal_to_index(csgo_action.steering_value)] = 1
+	steering_vector[1] = 1#[decimal_to_index(csgo_action.steering_value)] = 1
 
 	return torch.tensor(
 		steering_vector,
