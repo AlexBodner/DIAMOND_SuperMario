@@ -46,9 +46,8 @@ def main():
 	low_res_frames = []
 	
 	for j in range(4):
-		frame_x = f'frame_{i}_x'
-		frame_y = f'frame_{i}_y'
-		
+		frame_x = f'frame_{i}_x' # frame of observation
+		frame_y = f'frame_{i}_y' # frame of action
 		
 		# Check if the datasets exist in the file
 		if frame_x in h5file and frame_y in h5file:

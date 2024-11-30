@@ -89,7 +89,7 @@ class Game:
 			map_id = 0
 			l_click = r_click = False
 
-		obs, info, do_reset, ep_return, ep_length, keys_pressed, l_click, r_click = (None,) * 8
+		obs, info, do_reset, ep_return, ep_length, keys_pressed, l_click, r_click = (None,) * 8 # inicializa todo en None
 
 		reset()
 		do_wait = False
@@ -98,9 +98,9 @@ class Game:
 		while not should_stop:
 			do_one_step = False
 			mouse_x, mouse_y = 0, 0
-			pygame.event.pump()
+			pygame.event.pump()  # get events from the queue
 
-			for event in pygame.event.get():
+			for event in pygame.event.get():  # get all the events that have occurred since the last frame
 				if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
 					should_stop = True
 
@@ -121,19 +121,19 @@ class Game:
 					if event.button == 3:
 						r_click = False
 
-				if event.type == pygame.KEYDOWN:
-					keys_pressed.append(event.key)
+				if event.type == pygame.KEYDOWN:  # type = KEYDOWN si se presiona una tecla
+					keys_pressed.append(event.key) # event.key es el código de la tecla que se presionó
 
-				elif event.type == pygame.KEYUP and event.key in keys_pressed:
+				elif event.type == pygame.KEYUP and event.key in keys_pressed: # type = KEYUP si se suelta una tecla
 					keys_pressed.remove(event.key)
 
-				if event.type != pygame.KEYDOWN:
+				if event.type != pygame.KEYDOWN:          # VER LO DE NOOP	
 					continue
 
 				if event.key == pygame.K_RETURN:
 					do_reset = True
 
-				if event.key == pygame.K_PERIOD:
+				if event.key == pygame.K_PERIOD:  # pause/unpause
 					do_wait = not do_wait
 					print("Game paused." if do_wait else "Game resumed.")
 
@@ -141,10 +141,10 @@ class Game:
 					do_one_step = True
 
 				if event.key == pygame.K_m:
-					do_reset = self.env.next_mode()
+					do_reset = self.env.next_mode()    
 
 				if event.key == pygame.K_UP:
-					do_reset = self.env.next_axis_1()
+					do_reset = self.env.next_axis_1() 
 
 				if event.key == pygame.K_DOWN:
 					do_reset = self.env.prev_axis_1()

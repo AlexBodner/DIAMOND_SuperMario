@@ -98,6 +98,7 @@ class PlayEnv:
 		if self.is_human_player:
 			action = encode_csgo_action(csgo_action, device=self.agent.device)
 		else:
+			# Si lo juega el modelo de IA
 			action = self.env.next_act[self.t - 1] if self.t > 0 else self.env.act_buffer[0, -1].clone()
 			csgo_action = decode_csgo_action(action.cpu())
 		next_obs, rew, end, trunc, env_info = self.env.step(action)

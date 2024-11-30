@@ -15,8 +15,6 @@ OmegaConf.clear_resolvers()
 OmegaConf.register_new_resolver("eval", eval)
 
 
-
-
 def parse_args() -> argparse.Namespace:
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-r", "--record", action="store_true", help="Record episodes in PlayEnv.")

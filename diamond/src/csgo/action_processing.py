@@ -14,8 +14,8 @@ from .keymap import CSGO_KEYMAP
 
 @dataclass
 class CSGOAction:
-	keys: List[int]
-	steering_value: float
+	keys: List[int]  # keys es una lista de las teclas que se presionan, se representan como enteros
+	steering_value: float  # steering value es el valor de la dirección en la que se mueve el jugador (izquierda o derecha), va entre -1 y 1
 
 	@property
 	def key_names(self) -> List[str]:
@@ -62,19 +62,24 @@ def index_to_decimal(index):
 
 
 def encode_csgo_action(csgo_action: CSGOAction, device: torch.device) -> torch.Tensor:
-
-	#input_vector = np.zeros(1)
-	steering_vector = np.zeros(7)
+	keys_set = set(csgo_action.keys)
+	action_vector = np.zeros(7)
 	
-	#for key in csgo_action.key_names:
-		#if key == "d":
-		#	input_vector[0] = 1
-		#could iterate over more keys here
-	
-	steering_vector[1] = 1#[decimal_to_index(csgo_action.steering_value)] = 1
+	if 'd' in keys_set and 'w' in keys_set:    # derecha y saltar
+		action_vector[2] = 1
+	elif 'd' in keys_set and 'f' in keys_set:  # derecha y correr
+		action_vector[3] = 1
+	elif 'd' in keys_set:                      # derecha
+		action_vector[1] = 1
+	elif 'a' in keys_set:                      # izquierda
+		action_vector[6] = 1
+	elif 'w' in keys_set:                      # saltar
+		action_vector[5] = 1
+	else:
+		action_vector[0] = 1                   # no hacer nada
 
 	return torch.tensor(
-		steering_vector,
+		action_vector,
 		device=device,
 		dtype=torch.float32,
 	)
