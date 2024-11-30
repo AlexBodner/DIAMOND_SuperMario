@@ -15,6 +15,7 @@ def one_hot_encode(action_index, num_actions):
     # Efficiently create a one-hot encoded vector using np.eye (identity matrix)
     return np.eye(1, num_actions, action_index, dtype=int).flatten()
 # Functión para predecir la acción
+
 def predict_action(model, obs):
     if isinstance(obs, np.ndarray):
         obs = torch.from_numpy(obs)
@@ -59,7 +60,7 @@ def save_to_hdf5(filename, frames_data):
 
 
 
-def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
+def main(n_episodes = 2, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9]):
     # Inicialización
     world = 1
     stage = 1

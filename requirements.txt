@@ -3,6 +3,9 @@ torch
 torchvision
 opencv-python
 pandas
+ipython
+ipywidgets
+nest_asyncio
 gymnasium[atari,accept-rom-license]==0.29.1
 h5py==3.11.0
 huggingface-hub==0.17.2

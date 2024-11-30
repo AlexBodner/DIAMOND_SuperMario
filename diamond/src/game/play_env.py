@@ -9,7 +9,7 @@ from torch import Tensor
 
 from agent import Agent
 from csgo.action_processing import CSGOAction, decode_csgo_action, encode_csgo_action, print_csgo_action
-from csgo.keymap import CSGO_KEYMAP
+from csgo.keymap import CSGO_KEYMAP,MARIO_KEYMAP
 from data import Dataset, Episode
 from envs import WorldModelEnv
 import pygame
@@ -29,7 +29,7 @@ class PlayEnv:
 		store_original_obs: bool,
 	) -> None:
 		self.agent = agent
-		self.keymap = CSGO_KEYMAP
+		self.keymap = MARIO_KEYMAP
 		self.recording_mode = recording_mode
 		self.store_denoising_trajectory = store_denoising_trajectory
 		self.store_original_obs = store_original_obs
@@ -98,6 +98,7 @@ class PlayEnv:
 		if self.is_human_player:
 			action = encode_csgo_action(csgo_action, device=self.agent.device)
 		else:
+			# Si lo juega el modelo de IA
 			action = self.env.next_act[self.t - 1] if self.t > 0 else self.env.act_buffer[0, -1].clone()
 			csgo_action = decode_csgo_action(action.cpu())
 		next_obs, rew, end, trunc, env_info = self.env.step(action)

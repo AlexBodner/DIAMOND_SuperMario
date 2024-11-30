@@ -4,7 +4,4 @@
    - Correr recopilar_acciones.py con 2 episodios
    - python3 src/spawn.py dataset_files/ ./
 
--- Ejecutar generacion
-
- python3 src/play.py   --model "src"
--- Falta cambiar: diamond\src\csgo\action_processing.py
+Para correr play.py: python3 src/play.py --model 'src'
