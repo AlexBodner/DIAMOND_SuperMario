@@ -116,7 +116,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
                 action = env.action_space.sample()
             else:
             
-                if actions_counts[0]/(step+1)< noop_percentage and prev_action!=0:
+                if actions_counts.get(0,0)/(step+1)< noop_percentage and prev_action!=0:
                     action = 0
                 else:
                     action = model.predict_action(obs)
