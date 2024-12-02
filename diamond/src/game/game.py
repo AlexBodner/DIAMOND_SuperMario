@@ -69,7 +69,7 @@ class Game:
 
 			if obs_low_res is not None:
 				assert obs_low_res.ndim == 4 and obs_low_res.size(0) == 1
-				img = Image.fromarray(obs_low_res[0].add(1).div(2).mul(255).byte().permute(1, 2, 0).cpu().numpy())
+				img = Image.fromarray(obs_low_res[0].add(1).div(2).mul(255).byte().permute(1, 2, 0).cpu().numpy()[:, :, ::-1])
 				h = self.height * obs_low_res.size(2) // obs.size(2)
 				w = self.width * obs_low_res.size(3) // obs.size(3)
 				pygame_image = np.array(img.resize((w, h), resample=Image.BICUBIC)).transpose((1, 0, 2))
@@ -182,7 +182,7 @@ class Game:
 					for i, row in enumerate(col):
 						draw_text(row, idx_line=i, idx_column=j, num_cols=num_cols)
 
-			draw_low_res = self.verbose and "obs_low_res" in info and self.width == 280
+			draw_low_res = True#self.verbose and "obs_low_res" in info and self.width == 280
 			if draw_low_res:
 				draw_obs(obs, info["obs_low_res"])
 				draw_text("	 Pre-upsampling:", 0, 2, 3)

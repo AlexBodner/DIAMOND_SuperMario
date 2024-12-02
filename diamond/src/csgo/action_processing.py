@@ -35,6 +35,7 @@ def print_csgo_action(action: CSGOAction) -> Tuple[str]:
 def encode_csgo_action(csgo_action: CSGOAction, device: torch.device) -> torch.Tensor:
 	keys_set = set(csgo_action.keys)
 	action_vector = np.zeros(7)
+	#print(csgo_action.keys)
 	if 'd' in keys_set and 'w' in keys_set:    # derecha y saltar
 		action_vector[2] = 1
 	elif 'd' in keys_set and 'f' in keys_set:  # derecha y correr

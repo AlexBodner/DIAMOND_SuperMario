@@ -92,8 +92,8 @@ upsampler:
   training:
     num_autoregressive_steps: 1
     start_after_epochs: 0
-    steps_first_epoch: 1000
-    steps_per_epoch: 1000
+    steps_first_epoch: 400
+    steps_per_epoch: 400
     sample_weights: null
     batch_size: 14
     grad_acc_steps: 1

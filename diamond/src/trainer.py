@@ -37,7 +37,7 @@ from utils import (
 
 
 class Trainer(StateDictMixin):
-	def __init__(self, cfg: DictConfig, root_dir: Path) -> None:
+	def __init__(self, cfg: DictConfig, root_dir: Path, ) -> None:
 		torch.backends.cuda.matmul.allow_tf32 = True
 		OmegaConf.resolve(cfg)
 		self._cfg = cfg
@@ -113,7 +113,8 @@ class Trainer(StateDictMixin):
 		self.test_dataset.load_from_default_path()
 
 		# Create models
-		self.agent = Agent(instantiate(cfg.agent, num_actions=num_actions)).to(self._device)
+		self.agent = Agent(instantiate(cfg.agent, num_actions=num_actions)).to(self._device)#Load de agent, se puede reemplazar por checkpointeado
+
 		self._agent = build_ddp_wrapper(**self.agent._modules) if dist.is_initialized() else self.agent
 
 		if cfg.initialization.path_to_ckpt is not None:
