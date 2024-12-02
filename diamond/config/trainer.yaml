@@ -18,7 +18,7 @@ wandb:
   notes: null
 
 initialization:
-  path_to_ckpt: null
+  path_to_ckpt: /home/abodner/DIAMOND_SuperMario_cloud/diamond/epoch40_train1.pt
   load_denoiser: True
   load_rew_end_model: True
   load_actor_critic: True
@@ -68,7 +68,7 @@ denoiser:
   training:
     num_autoregressive_steps: 4
     start_after_epochs: 0
-    steps_first_epoch: 500
+    steps_first_epoch: 10000
     steps_per_epoch: 500
     sample_weights: null
     batch_size: 14
