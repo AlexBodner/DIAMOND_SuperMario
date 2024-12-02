@@ -18,7 +18,7 @@ wandb:
   notes: null
 
 initialization:
-  path_to_ckpt: /home/abodner/DIAMOND_SuperMario_cloud/diamond/epoch40_train1.pt
+  path_to_ckpt: null
   load_denoiser: True
   load_rew_end_model: True
   load_actor_critic: True
@@ -54,7 +54,7 @@ static_dataset:
 
 training:
   should: True
-  num_final_epochs: 40
+  num_final_epochs: 1500
   cache_in_ram: False
   num_workers_data_loaders: 4
   model_free: False # if True, turn off world_model training and RL in imagination
@@ -68,8 +68,8 @@ denoiser:
   training:
     num_autoregressive_steps: 4
     start_after_epochs: 0
-    steps_first_epoch: 10000
-    steps_per_epoch: 500
+    steps_first_epoch: 100
+    steps_per_epoch: 100
     sample_weights: null
     batch_size: 14
     grad_acc_steps: 1
@@ -102,4 +102,3 @@ upsampler:
 
   optimizer: ${denoiser.optimizer}
   sigma_distribution: ${denoiser.sigma_distribution}
-

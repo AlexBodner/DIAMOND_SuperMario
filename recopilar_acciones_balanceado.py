@@ -131,7 +131,9 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
             obs, reward, terminated, truncated, info = env.step(action)
             action = one_hot_encode(action,len(actions) )
             frames_data['actions'].append(action)  # Acción actual
+
             if reward!=reward_r:
+            
                 print("differnce in rewards between played and saved")
 
             # Mostrar el estado del juego
