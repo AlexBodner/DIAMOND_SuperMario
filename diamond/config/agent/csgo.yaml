@@ -32,7 +32,7 @@ upsampler:
   sigma_data: 0.5
   sigma_offset_noise: 0.1
   noise_previous_obs: false
-  upsampling_factor: 5
+  upsampling_factor: 4
   inner_model:
     _target_: models.diffusion.InnerModelConfig
     img_channels: 3

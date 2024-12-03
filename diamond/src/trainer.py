@@ -230,10 +230,10 @@ class Trainer(StateDictMixin):
 			self.load_state_checkpoint()
 		else:
 			self.save_checkpoint()
-
+		for name in self._model_names:
+			print(f"{count_parameters(getattr(self.agent, name))} parameters in {name}")
 		if self._rank == 0:
-			for name in self._model_names:
-				print(f"{count_parameters(getattr(self.agent, name))} parameters in {name}")
+
 			print(self.train_dataset)
 			print(self.test_dataset)
 
