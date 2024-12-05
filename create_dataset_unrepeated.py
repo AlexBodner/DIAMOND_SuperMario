@@ -10,6 +10,8 @@ from wrappers import *# CustomReward,CustomReward_rgb, CustomSkipFrame, Gymnasiu
 import pandas as pd
 import numpy as np
 import random
+import hashlib
+
 # Function to convert an action index to a one-hot encoded vector
 def action_encode(action):
     action_vector = np.array([0,0,0,0]) #Follows WASD
@@ -46,7 +48,7 @@ JoypadSpace.reset = lambda self, **kwargs: self.env.reset(**kwargs)
 
 # Crear entorno
 def create_env(world, stage):
-    env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode=None, apply_api_compatibility=True,
+    env = gym_super_mario_bros.make("SuperMarioBros-{}-{}-v0".format(world, stage), render_mode="human", apply_api_compatibility=True,
                                      max_episode_steps=1000)
     env = JoypadSpace(env, SIMPLE_MOVEMENT)
     env = CustomReward(GymnasiumEnvWrapper(env), None)
@@ -84,7 +86,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
 
     actions = SIMPLE_MOVEMENT
     model = PPO(env.observation_space.shape[0], len(actions))
-    
+    frames_actions = {}
     # Cargar modelo
     if torch.cuda.is_available():
         model.load_state_dict(torch.load("{}/ppo_super_mario_bros_{}_{}".format(saved_path, world, stage)))
@@ -94,7 +96,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
         model.eval()
 
     for episode in range(n_episodes):
-        epsilon = random.choice(epsilons)
+        epsilon = 0#random.choice(epsilons)
 
         print("Started episode",episode, "with epsilon",epsilon)
         env = create_env(world, stage)
@@ -122,7 +124,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
             if previous_lives is not None and current_lives < previous_lives:
                 life_lost = True
             previous_lives = current_lives
-            frames_data['helperarr'].append([reward,int(life_lost)])  # 1 si se perdió una vida, 0 si no
+            #frames_data['helperarr'].append([reward,int(life_lost)])  # 1 si se perdió una vida, 0 si no
             # Predecir la acción
             #VAMos a boostear NOOP (0) 
             
@@ -142,7 +144,13 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
             actions_counts[action] = actions_counts.get(action,0)+1
             # Almacenar los datos de cada frame
             frames_data['frames'].append(obs_rgb.copy())  # Imagen
-
+            #print(obs_rgb.shape)
+            hashed = hashlib.md5(obs_rgb[:,20:,:].data.tobytes()).hexdigest()
+            
+            if frames_actions.get(hashed,0):
+                print("repeated")
+            frames_actions[hashed ] = 1
+            #print(hashed )
             #frames_data['actions'].append(prev_action)  # Acción anterior
             #print(one_hot_encode(action,len(actions) ))
             obs_rgb, reward_r, terminated, truncated, info = env_rgb.step(action)
@@ -155,7 +163,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
                 print("differnce in rewards between played and saved")
 
             # Mostrar el estado del juego
-            #env.render()
+            env.render()
             if info["flag_get"]:
                 print(f"World {world} stage {stage} completed")
                 break
