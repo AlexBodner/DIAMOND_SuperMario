@@ -9,8 +9,8 @@ hydra:
     chdir: True
 
 wandb:
-  mode: disabled
-  project: null
+  mode: enabled
+  project: diamond
   entity: null
   name: null
   group: null
@@ -68,7 +68,7 @@ denoiser:
   training:
     num_autoregressive_steps: 4
     start_after_epochs: 0
-    steps_first_epoch: 1000
+    steps_first_epoch: 10
     steps_per_epoch: 500
     sample_weights: null
     batch_size: 14
