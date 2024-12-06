@@ -62,7 +62,7 @@ training:
 
 evaluation:
   should: True
-  every: 20
+  every: 3
 
 denoiser:
   training:
