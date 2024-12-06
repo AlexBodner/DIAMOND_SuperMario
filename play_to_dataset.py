@@ -5,6 +5,7 @@ import numpy as np
 from gym_super_mario_bros.actions import SIMPLE_MOVEMENT
 from wrappers import *
 import h5py
+import time
 import uuid
 def action_encode(action):
     action_vector = np.array([0,0,0]) #Follows WAD, there is no S
@@ -54,7 +55,7 @@ def detect_action(keys, combo_actions, single_key_actions, relevant_keys):
     return action if action is not None else 0  # Default to NOOP
 
 import copy
-def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=None, steps=1000,delta_steps = 40):
+def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=None, steps=1000,delta_steps = 250):
     """
     Play the Mario game using keyboard input and optional model prediction.
 
@@ -92,7 +93,7 @@ def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=N
             print(f"Action: {action}", action_enco)
             frames_data['frames'].append(copy.deepcopy(obs))  # Imagen
             frames_data['actions'].append(action_enco.copy())  # Acción actual
-
+            time.sleep(0.02)
         # Execute action
         obs, reward, terminated, truncated, info = env.step(action)
         env.render()

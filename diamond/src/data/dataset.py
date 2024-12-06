@@ -158,7 +158,7 @@ class Dataset(StateDictMixin, TorchDataset):
 class CSGOHdf5Dataset(StateDictMixin, TorchDataset):
     def __init__(self, directory: Path) -> None:
         super().__init__()
-        filenames = sorted(Path(directory).rglob("*.hdf5"), key=lambda x: int(x.stem.split("_")[-1]))
+        filenames = sorted(Path(directory).rglob("*.hdf5"), key=lambda x:x.stem.split("_")[-1])
         self._filenames = {f"{x.parent.name}/{x.name}": x for x in filenames}
         self._length_one_episode = 1000
         self.num_episodes = len(self._filenames)
