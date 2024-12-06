@@ -9,10 +9,10 @@ hydra:
     chdir: True
 
 wandb:
-  mode: enabled
+  mode: online  
   project: diamond
-  entity: null
-  name: null
+  entity: alexbodner-universidad-de-san-andr-s
+  name: experimento-datos-humano
   group: null
   tags: null
   notes: null
