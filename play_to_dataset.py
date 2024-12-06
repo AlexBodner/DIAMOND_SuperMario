@@ -1,12 +1,8 @@
 import pygame
 from nes_py.wrappers import JoypadSpace
 import gym_super_mario_bros
-import gymnasium as gym
 import numpy as np
-import torch
-from src.model import PPO
 from gym_super_mario_bros.actions import SIMPLE_MOVEMENT
-import torch.nn.functional as F
 from wrappers import *
 import h5py
 import uuid
@@ -58,7 +54,7 @@ def detect_action(keys, combo_actions, single_key_actions, relevant_keys):
     return action if action is not None else 0  # Default to NOOP
 
 import copy
-def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=None, steps=1000):
+def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=None, steps=1000,delta_steps = 40):
     """
     Play the Mario game using keyboard input and optional model prediction.
 
@@ -69,6 +65,7 @@ def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=N
         single_key_actions: Dictionary of single key actions.
         relevant_keys: Set of relevant keys to listen for.
         steps: Maximum number of steps to run the game loop.
+        delta_steps: from when starts to save. Its useful to not recollect always the beginning
     """
     pygame.init()
     pygame.display.set_mode((256, 240))  # Small window for input capture
@@ -79,7 +76,7 @@ def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=N
         'helperarr': []  # Para almacenar las banderas de vida perdida
     }
     terminated, truncated = True, True
-    for step in range(steps):
+    for step in range(steps+delta_steps):
         if terminated or truncated:
             obs, info = env.reset()
 
@@ -88,12 +85,13 @@ def play_game(env,  combo_actions=None, single_key_actions=None, relevant_keys=N
 
         # Detect action
         action = detect_action(keys, combo_actions, single_key_actions, relevant_keys)
+        if step>= delta_steps:
+            action_enco = action_encode(action)
+            # Debugging: Print action
 
-        # Debugging: Print action
-        action_enco = action_encode(action)
-        print(f"Action: {action}", action_enco)
-        frames_data['frames'].append(copy.deepcopy(obs))  # Imagen
-        frames_data['actions'].append(action_enco.copy())  # Acción actual
+            print(f"Action: {action}", action_enco)
+            frames_data['frames'].append(copy.deepcopy(obs))  # Imagen
+            frames_data['actions'].append(action_enco.copy())  # Acción actual
 
         # Execute action
         obs, reward, terminated, truncated, info = env.step(action)
