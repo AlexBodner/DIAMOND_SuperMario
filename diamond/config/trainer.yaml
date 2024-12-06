@@ -54,7 +54,7 @@ static_dataset:
 
 training:
   should: True
-  num_final_epochs: 1500
+  num_final_epochs: 50
   cache_in_ram: False
   num_workers_data_loaders: 4
   model_free: False # if True, turn off world_model training and RL in imagination
@@ -68,7 +68,7 @@ denoiser:
   training:
     num_autoregressive_steps: 4
     start_after_epochs: 0
-    steps_first_epoch: 10
+    steps_first_epoch: 1000
     steps_per_epoch: 500
     sample_weights: null
     batch_size: 14
