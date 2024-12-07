@@ -69,6 +69,7 @@ class WorldModelEnv:
 
 	@torch.no_grad()
 	def step(self, act: torch.LongTensor) -> StepOutput:
+		print("rec action", act)
 		self.act_buffer[:, -1] = act
 
 		next_obs, denoising_trajectory = self.predict_next_obs()
