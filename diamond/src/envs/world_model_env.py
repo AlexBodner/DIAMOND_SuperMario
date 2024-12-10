@@ -69,7 +69,6 @@ class WorldModelEnv:
 
 	@torch.no_grad()
 	def step(self, act: torch.LongTensor) -> StepOutput:
-		print("rec action", act)
 		self.act_buffer[:, -1] = act
 
 		next_obs, denoising_trajectory = self.predict_next_obs()
@@ -142,6 +141,7 @@ class WorldModelEnv:
 			obs_, obs_full_res_, act_, next_act_, hx_, cx_ = [], [], [], [], [], []
 			for _ in range(num_batches_to_preload):
 				d = next(spawn_dirs)
+				#d = list(spawn_dir.iterdir())[-1]
 				obs = torch.tensor(np.load(d / "low_res.npy"), device=self.device).div(255).mul(2).sub(1).unsqueeze(0)
 				obs_full_res = torch.tensor(np.load(d / "full_res.npy"), device=self.device).div(255).mul(2).sub(1).unsqueeze(0)
 				act = torch.tensor(np.load(d / "act.npy"), dtype=torch.long, device=self.device).unsqueeze(0)

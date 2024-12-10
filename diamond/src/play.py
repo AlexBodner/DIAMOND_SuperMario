@@ -48,12 +48,12 @@ def prepare_play_mode(cfg: DictConfig, args: argparse.Namespace) -> PlayEnv:
 	#else:
 	path_hf = args.model
 	# If you're running with a model that you already downloaded. simply change this path above to match the folder in which you put the model
-	path_ckpt ="human_data_epoch34.pt"# path_hf / "csgo/model/csgo.pt"
+	path_ckpt ="checkpoints/human_data_epoch45.pt"# path_hf / "csgo/model/csgo.pt"
 	spawn_dir = path_hf / "csgo/spawn"
 
 	# Override config
-	cfg.agent = OmegaConf.load( "config/agent/csgo.yaml")
-	cfg.env = OmegaConf.load( "config/env/csgo.yaml")
+	cfg.agent = OmegaConf.load("config/agent/csgo.yaml")
+	cfg.env = OmegaConf.load("config/env/csgo.yaml")
 
 	if torch.cuda.is_available():
 		device = torch.device("cuda:0")

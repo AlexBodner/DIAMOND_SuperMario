@@ -39,7 +39,7 @@ def main():
 	h5file = h5py.File(full_res, 'r')	
 	i = random.randint(0, 799)
 
-
+	i = 800
 	data_x_frames = []
 	data_y_frames = []
 	next_act_frames = []

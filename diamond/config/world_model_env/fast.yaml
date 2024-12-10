@@ -19,7 +19,7 @@ diffusion_sampler_upsampling:
   sigma_min: 1
   sigma_max: 5.0
   rho: 7
-  order: 2  # 1: Euler, 2: Heun
+  order: 1  # 1: Euler, 2: Heun
   s_churn: 10.0  # Amount of stochasticity
   s_tmin: 1
   s_tmax: 5
