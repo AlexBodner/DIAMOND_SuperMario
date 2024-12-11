@@ -10,10 +10,27 @@ from wrappers import *# CustomReward,CustomReward_rgb, CustomSkipFrame, Gymnasiu
 import pandas as pd
 import numpy as np
 import random
-# Function to convert an action index to a one-hot encoded vector
-def one_hot_encode(action_index, num_actions):
+
+def action_encode(action):
+    action_vector = np.array([0,0,0]) #Follows WAD, there is no S
+        
+    if action == 2:    # derecha y saltar
+        action_vector[-1] = 1
+        action_vector[0] = 1
+    elif action == 3:  # derecha y correr
+        action_vector[-1] = 1
+    elif action==1:   # right
+        action_vector[-1] = 1
+    elif action==6 : # left
+        action_vector[1] = 1
+    elif action==5:  # jump
+        action_vector[0] = 1
     # Efficiently create a one-hot encoded vector using np.eye (identity matrix)
-    return np.eye(1, num_actions, action_index, dtype=int).flatten()
+    return action_vector
+# Function to convert an action index to a one-hot encoded vector
+#def one_hot_encode(action_index, num_actions):
+    # Efficiently create a one-hot encoded vector using np.eye (identity matrix)
+#    return np.eye(1, num_actions, action_index, dtype=int).flatten()
 # Functión para predecir la acción
 
 def predict_action(model, obs):
@@ -96,6 +113,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
         previous_lives = None  # Variable para trackear las vidas anteriores
         actions_counts= {}
         reward = 0
+        repeat_noop = 0
         prev_action = None
         for step in range(1000):  # 1000 frames (~1 minuto)
             if terminated or truncated:
@@ -111,15 +129,24 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
             frames_data['helperarr'].append([reward,int(life_lost)])  # 1 si se perdió una vida, 0 si no
             # Predecir la acción
             #VAMos a boostear NOOP (0) 
-            
-            if random.random()<epsilon:
-                action = env.action_space.sample()
+            if repeat_noop:
+                action = 0
+                repeat_noop-=1
             else:
-            
-                if actions_counts.get(0,0)/(step+1)< noop_percentage and prev_action!=0:
-                    action = 0
+                if random.random()<epsilon:
+                    action = env.action_space.sample()
                 else:
-                    action = model.predict_action(obs)
+                
+                    if actions_counts.get(0,0)/(step+1)< noop_percentage and prev_action!=0:
+                        action = 0
+                        repeat_noop = 15
+                    else:
+                        action = model.predict_action(obs)
+
+            if action == 3: #To not run fast
+                action = 1
+            elif action ==4:
+                action = 2
             prev_action = action
             actions_counts[action] = actions_counts.get(action,0)+1
             # Almacenar los datos de cada frame
@@ -129,7 +156,7 @@ def main(n_episodes = 60, epsilons = [0.1,0.15,0.3,0.5,0.7,0.8,0.9],noop_percent
             #print(one_hot_encode(action,len(actions) ))
             obs_rgb, reward_r, terminated, truncated, info = env_rgb.step(action)
             obs, reward, terminated, truncated, info = env.step(action)
-            action = one_hot_encode(action,len(actions) )
+            action = action_encode(action )
             frames_data['actions'].append(action)  # Acción actual
             if reward!=reward_r:
             
