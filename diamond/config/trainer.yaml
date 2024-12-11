@@ -12,7 +12,7 @@ wandb:
   mode: online  
   project: diamond
   entity: alexbodner-universidad-de-san-andr-s
-  name: experiment-human-data
+  name: experiment-balanced-data
   group: null
   tags: null
   notes: null
