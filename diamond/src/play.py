@@ -48,7 +48,7 @@ def prepare_play_mode(cfg: DictConfig, args: argparse.Namespace) -> PlayEnv:
 	#else:
 	path_hf = args.model
 	# If you're running with a model that you already downloaded. simply change this path above to match the folder in which you put the model
-	path_ckpt ="checkpoints/human_data_epoch45.pt"# path_hf / "csgo/model/csgo.pt"
+	path_ckpt ="checkpoints/human_data_epoch50.pt"# path_hf / "csgo/model/csgo.pt"
 	spawn_dir = path_hf / "csgo/spawn"
 
 	# Override config
