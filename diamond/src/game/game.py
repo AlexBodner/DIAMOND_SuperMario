@@ -7,7 +7,8 @@ from PIL import Image
 from csgo.action_processing import CSGOAction
 from .dataset_env import DatasetEnv
 from .play_env import PlayEnv
-
+import os
+from PIL import Image, ImageDraw, ImageFont
 
 class Game:
 	def __init__(
@@ -17,14 +18,17 @@ class Game:
 		mouse_multiplier: int,
 		fps: int,
 		verbose: bool,
+        save_frames_dir: str = None,
+
 	) -> None:
 		self.env = play_env
 		self.height, self.width = size
 		self.mouse_multiplier = mouse_multiplier
 		self.fps = fps
 		self.verbose = verbose
-
+		self.frame_count=  0
 		self.env.print_controls()
+		self.save_frames_dir=save_frames_dir
 		print("\nControls:\n")
 		print(" m  : switch control (human/replay)") # Not for main as Game can use either PlayEnv or DatasetEnv
 		print(" .  : pause/unpause")
@@ -34,6 +38,25 @@ class Game:
 		print("\n")
 		input("Press enter to start")
 
+	def save_frame(self, obs,obs_low_res, action):
+		"""Save the current frame."""
+		if not os.path.exists(self.save_frames_dir):
+			os.mkdir(self.save_frames_dir)
+		if self.save_frames_dir:
+			img = Image.fromarray(
+				obs[0].add(1).div(2).mul(255).byte().permute(1, 2, 0).cpu().numpy()[:, :, ::-1]
+			)
+			frame_path = os.path.join(self.save_frames_dir, f"frame_{self.frame_count:04d}.png")
+			img_low_res = Image.fromarray(
+				obs_low_res[0].add(1).div(2).mul(255).byte().permute(1, 2, 0).cpu().numpy()[:, :, ::-1]
+			)
+			with open(frame_path.replace("frame_",f"action_").replace(".png",".txt"), "w") as f:
+				f.write(f"{action}\n")
+
+			img.save(frame_path)
+			img_low_res.save(frame_path.replace("frame_","frame_low_res_"))
+			self.frame_count += 1
+			
 	def run(self) -> None:
 		pygame.init()
 
@@ -186,6 +209,8 @@ class Game:
 			if draw_low_res:
 				draw_obs(obs, info["obs_low_res"])
 				draw_text("	 Pre-upsampling:", 0, 2, 3)
+				self.save_frame(obs, info["obs_low_res"], info["header"][0][-1])
+
 			else:
 				draw_obs(obs, None)
 
