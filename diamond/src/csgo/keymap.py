@@ -32,5 +32,5 @@ MARIO_KEYMAP = {
     pygame.K_s: "crouch",  # "S" = hace que Mario se agache
     pygame.K_f: "run",  # "S" = hace que Mario se agache
 
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 }

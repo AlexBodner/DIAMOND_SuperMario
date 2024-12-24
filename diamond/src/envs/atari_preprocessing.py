@@ -266,4 +266,4 @@ class AtariPreprocessing(gym.Wrapper, gym.utils.RecordConstructorArgs):
         obs = np.asarray(obs, dtype=np.uint8)
 
         return obs, original_obs
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

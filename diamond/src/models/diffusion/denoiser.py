@@ -284,4 +284,4 @@ class Denoiser(nn.Module):
 
         loss /= seq_length
         return loss, {"loss_denoising": loss.item()}
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

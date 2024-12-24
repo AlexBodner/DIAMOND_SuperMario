@@ -144,4 +144,4 @@ class BatchSampler(torch.utils.data.Sampler):
             starts = stops - self.seq_length
 
         return [SegmentId(*x) for x in zip(episode_ids, starts, stops)]
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

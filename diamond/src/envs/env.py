@@ -218,4 +218,4 @@ class TorchEnv(gymnasium.Wrapper):
             return torch.tensor(x, dtype=torch.uint8, device=self.device)
         else:
             return torch.tensor(x, dtype=torch.float32, device=self.device)
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

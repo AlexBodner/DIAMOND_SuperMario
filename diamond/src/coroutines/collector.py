@@ -252,4 +252,4 @@ class NumToCollect:
     @property
     def total(self) -> int:
         return self.steps if self.steps is not None else self.episodes
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

@@ -56,4 +56,4 @@ class Segment:
     @property
     def effective_size(self):
         return self.mask_padding.sum().item()
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

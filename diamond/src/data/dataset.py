@@ -398,5 +398,5 @@ class CSGOHdf5Dataset(StateDictMixin, TorchDataset):
     
     def load_episode(self, episode_id: int) -> Episode:  # used by DatasetTraverser
         s = self[SegmentId(episode_id, 0, self._length_one_episode)]
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
         return Episode(s.obs, s.act, s.rew, s.end, s.trunc, s.info)

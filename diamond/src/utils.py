@@ -650,5 +650,5 @@ def try_until_no_except(func: Callable) -> None:
 
 def wandb_log(logs: Logs, epoch: int):
 	for d in logs:
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 		wandb.log({"epoch": epoch, **d})

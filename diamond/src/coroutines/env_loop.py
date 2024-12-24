@@ -118,5 +118,5 @@ def make_env_loop(
         #print("all",all_)
         all_obs, act, rew, end, trunc = (torch.stack(x, dim=1) for x in zip(*all_))
 
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
         num_steps = yield all_obs, act, rew, end, trunc, infos

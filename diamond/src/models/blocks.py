@@ -492,4 +492,4 @@ class UNet(nn.Module):
 
         x = x[..., :h, :w]
         return x, d_outputs, u_outputs
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

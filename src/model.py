@@ -102,4 +102,4 @@ class PPO(nn.Module):
         action = torch.argmax(policy).item()
         return action
 
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

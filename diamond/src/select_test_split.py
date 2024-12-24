@@ -76,4 +76,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     select_random_files(args.folder_path, args.output_file, args.percentage)
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

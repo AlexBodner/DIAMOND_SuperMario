@@ -114,4 +114,4 @@ class InnerModel(nn.Module):
         x, _, _ = self.unet(x, cond)
         x = self.conv_out(F.silu(self.norm_out(x)))
         return x
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

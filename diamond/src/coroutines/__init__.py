@@ -22,4 +22,4 @@ def coroutine(func):
         return gen
 
     return primer
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

@@ -174,4 +174,4 @@ class DatasetTraverser:
         if len(chunks) > 0:
             yield collate_segments_to_batch(chunks)
 
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

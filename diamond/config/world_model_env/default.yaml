@@ -54,4 +54,4 @@ diffusion_sampler_upsampling:
   s_tmax: 5
   s_noise: 0.9
   s_cond: 0
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

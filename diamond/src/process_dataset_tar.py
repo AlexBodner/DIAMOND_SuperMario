@@ -368,5 +368,5 @@ def main():
 
 
 if __name__ == "__main__":
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 	main()

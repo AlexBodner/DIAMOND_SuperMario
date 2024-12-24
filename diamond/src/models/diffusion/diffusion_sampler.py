@@ -144,4 +144,4 @@ def build_sigmas(num_steps: int, sigma_min: float, sigma_max: float, rho: int, d
     l = torch.linspace(0, 1, num_steps, device=device)
     sigmas = (max_inv_rho + l * (min_inv_rho - max_inv_rho)) ** rho
     return torch.cat((sigmas, sigmas.new_zeros(1)))
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

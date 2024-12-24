@@ -124,4 +124,4 @@ def merge_info(info_a, info_b):
         **{k: torch.cat((info_a[k], info_b[k]), dim=0) for k in intersection},
     }
     return info
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

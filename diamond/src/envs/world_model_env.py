@@ -344,4 +344,4 @@ class WorldModelEnv:
 				cx = torch.stack(cx_[c : c + num_dead]).unsqueeze(0) if self.rew_end_model is not None else None
 				c += num_dead
 				num_dead = yield obs, obs_full_res, act, next_act, (hx, cx)
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

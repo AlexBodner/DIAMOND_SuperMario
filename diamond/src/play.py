@@ -13,7 +13,7 @@ from game import Game, PlayEnv, ColabGame
 <<<<<<< HEAD
 =======
 from utils import count_parameters
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 
 OmegaConf.clear_resolvers()
 OmegaConf.register_new_resolver("eval", eval)
@@ -86,7 +86,7 @@ def prepare_play_mode(cfg: DictConfig, args: argparse.Namespace) -> PlayEnv:
 =======
 	for name in ["denoiser", "upsampler"]:
 			print(f"{count_parameters(getattr(agent, name))} parameters in {name}")
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 	if device.type == "cuda" and args.compile:
 		print("Compiling models...")
 		wm_env.predict_next_obs = torch.compile(wm_env.predict_next_obs, mode="reduce-overhead")

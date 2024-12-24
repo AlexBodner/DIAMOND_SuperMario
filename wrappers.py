@@ -324,5 +324,5 @@ class GymnasiumEnvWrapper(gym.Env):
         return self.env.render(**kwargs)
 
     def close(self):
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
         self.env.close()

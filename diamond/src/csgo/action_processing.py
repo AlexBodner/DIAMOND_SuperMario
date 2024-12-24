@@ -158,4 +158,4 @@ def decode_csgo_action(y_preds: torch.Tensor) -> CSGOAction:
 
 	return CSGOAction(keys_pressed, steering_value)
 
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

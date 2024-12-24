@@ -220,5 +220,5 @@ class ColabGame:
 				await reset()
 
 			else:
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 				obs = next_obs

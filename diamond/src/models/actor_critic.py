@@ -286,4 +286,4 @@ def compute_lambda_returns(
         last = lambda_returns[:, t]
 
     return lambda_returns
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

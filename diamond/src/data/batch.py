@@ -50,4 +50,4 @@ class Batch:
 
     def to(self, device: torch.device) -> Batch:
         return Batch(**{k: v if k in ("segment_ids", "info") else v.to(device) for k, v in self.__dict__.items()})
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

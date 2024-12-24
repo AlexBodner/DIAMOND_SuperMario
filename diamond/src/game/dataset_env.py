@@ -232,4 +232,4 @@ class DatasetEnv:
 		]
 		info = {"header": header}
 		return self.obs, torch.tensor(0), False, False, info
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

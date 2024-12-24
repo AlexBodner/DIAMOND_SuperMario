@@ -148,4 +148,4 @@ class Agent(nn.Module):
             self.rew_end_model.load_state_dict(extract_state_dict(sd, "rew_end_model"))
         if load_actor_critic and self.actor_critic is not None:
             self.actor_critic.load_state_dict(extract_state_dict(sd, "actor_critic"))
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

@@ -26,5 +26,5 @@ tqdm==4.66.4
 wandb==0.17.0
 ipython
 ipywidgets
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
 nest_asyncio

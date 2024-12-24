@@ -292,4 +292,4 @@ class PlayEnv:
 		self.t += 1
 
 		return next_obs, rew, end, trunc, info
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

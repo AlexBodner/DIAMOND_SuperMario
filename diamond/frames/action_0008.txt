@@ -2,4 +2,4 @@
 Clicks: move_right + jump [Action 0.0] 
 =======
 Clicks: move_right [Action 0.0] 
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)

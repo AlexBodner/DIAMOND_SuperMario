@@ -454,4 +454,4 @@ class Game:
 				obs = next_obs
 
 		pygame.quit()
->>>>>>> origin/master
+>>>>>>> 9998bc0 (updated readme)
