@@ -1,6 +1,3 @@
-<a href="https://aimeos.org/">
-    <img src="logo.png" alt="logo" title="How Much VRAM" align="right" height="60" />
-</a>
 
 # Super Mario DIAMOND
 
@@ -8,7 +5,7 @@
 
 [ Super Mario DIAMOND](https://github.com/AlexBodner/DIAMOND_SuperMario) is an open source project that applied [DIAMOND](https://github.com/eloialonso/diamond) for [Super Mario Bros Gym environment](https://pypi.org/project/gym-super-mario-bros/). We replace the whole game engine by a neural network, which emulates the dynamic of the videogame, predicting the next frame out of previous states and actions. Take a look at an example:
 
-![](https://github.com/Your_Repository_Name/Your_GIF_Name.gif)
+![](https://github.com/AlexBodner/DIAMOND_SuperMario/blob/main/game.gif)
 
 
 
