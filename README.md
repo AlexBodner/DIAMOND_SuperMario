@@ -25,6 +25,8 @@
 
 - [Collaborate](#Collaborate)
 
+- [Authors](#Authors)
+
 - [License](#license)
   
 - [References](#references)
@@ -117,6 +119,10 @@ Some development ideas that we want to add in the future are:
 - Further action balancing in more intelligent ways. For example, one could hash the frames and associate to that hash the done actions. In that way, one could take a different action if the same scenario is seen across different episodes.
 
 If you'd like to work on this don't be shy to contact us!
+
+## Authors
+
+This project was created as a final project for the Computer Vision course of the "Universidad de San Andrés" by the students Alexander Dylan Bodner and María Mora Vigo Malusardi
 
 ## License
 
