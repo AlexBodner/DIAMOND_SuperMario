@@ -100,7 +100,6 @@ A linear layer transforms the action and noise embeddings into the required outp
 
 $$
 \text{Output} = \textbf{Group Norm}(\text{Input}) \cdot (1+\sigma) + \mu
-
 $$
 
 Here, $\mu$ and $\sigma$ are the terms learned by the linear layer.
