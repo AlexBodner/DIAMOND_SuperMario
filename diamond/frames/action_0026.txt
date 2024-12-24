@@ -1,0 +1,1 @@
+Clicks: move_right [Action 0.0] 
