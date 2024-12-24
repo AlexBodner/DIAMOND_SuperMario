@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 mario_episode_data_0.hdf5
 mario_episode_data_1.hdf5
+=======
+mario_episode_data_0.hdf5
+mario_episode_data_1.hdf5
+>>>>>>> origin/master

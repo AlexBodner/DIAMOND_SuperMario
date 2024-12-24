@@ -10,6 +10,10 @@ import torch
 from agent import Agent
 from envs import WorldModelEnv
 from game import Game, PlayEnv, ColabGame
+<<<<<<< HEAD
+=======
+from utils import count_parameters
+>>>>>>> origin/master
 
 OmegaConf.clear_resolvers()
 OmegaConf.register_new_resolver("eval", eval)
@@ -77,7 +81,12 @@ def prepare_play_mode(cfg: DictConfig, args: argparse.Namespace) -> PlayEnv:
 		sl = max(sl, cfg.agent.upsampler.inner_model.num_steps_conditioning)
 	wm_env_cfg = instantiate(cfg.world_model_env, num_batches_to_preload=1)
 	wm_env = WorldModelEnv(agent.denoiser, agent.upsampler, agent.rew_end_model, spawn_dir, 1, sl, wm_env_cfg, return_denoising_trajectory=True)
+<<<<<<< HEAD
 	
+=======
+	for name in ["denoiser", "upsampler"]:
+			print(f"{count_parameters(getattr(agent, name))} parameters in {name}")
+>>>>>>> origin/master
 	if device.type == "cuda" and args.compile:
 		print("Compiling models...")
 		wm_env.predict_next_obs = torch.compile(wm_env.predict_next_obs, mode="reduce-overhead")

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Clicks:  [Action 0.0] 
+=======
+Clicks: move_right [Action 0.0] 
+>>>>>>> origin/master
